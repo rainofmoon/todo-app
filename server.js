@@ -23,6 +23,7 @@ app.get('/api/todos', async (req, res) => {
     const filter = (req.query.filter || 'all').toString();
     const todos = await getTodos(filter);
     res.json(todos);
+    console.log('Fetched todos:', todos);
   } catch (error) {
     console.error('Error fetching todos:', error);
     res.status(500).json({ message: 'Failed to fetch todos' });
@@ -94,7 +95,7 @@ app.delete('/api/todos/:id', async (req, res) => {
   }
 });
 
-app.get('*', (req, res) => {
+app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 

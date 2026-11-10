@@ -21,7 +21,7 @@
             maxlength="200"
             aria-label="Todo title"
           />
-          <button type="submit">Add</button>
+          <button type="button" onclick="updateItem()">Add</button>
         </form>
 
         <div class="toolbar">
@@ -37,6 +37,22 @@
       </main>
     </div>
 
-    <script src="/app.js"></script>
+    <script>
+      let count = 0;
+      const itemInput = document.getElementById('todo-input');
+
+      function updateItem() {
+        const itemText = itemInput.value.trim();
+        if (itemText === '') {
+          alert('Please enter a todo item.');
+          return;
+        }else{
+          count++;
+          document.getElementById("todo-count").textContent = `${count} items left`;
+          document.getElementById('todo-input').value = '';
+
+        };
+      };
+    </script>
   </body>
 </html>
